@@ -1,6 +1,7 @@
 # Flask_CRUD
-This projec consist of CRUD opertions performed on FLASK using Python
-Operations are namely:
+This project consist of CRUD opertions performed on FLASK using Python.
+Welcome page is there which contains few link to pages like login, create and upload. 
+CRUD Operations are:
   1.GET
   2.POST
   3.INSERT
