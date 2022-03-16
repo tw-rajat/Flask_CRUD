@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request,redirect
+from flask import Flask, render_template,request,redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 
@@ -49,7 +49,21 @@ def create():
  
 @app.route('/')
 def welcome():
-    return render_template('welcome.html') 
+    return render_template('welcome.html')
+
+@app.route('/login')  
+def login():  
+    return render_template("login.html");  
+
+@app.route('/validate', methods = ["POST"])  
+def validate():  
+    if request.method == 'POST' and request.form['pass'] == 'jtp':  
+        return redirect(url_for("success"))  
+    return redirect(url_for("login")) 
+
+@app.route('/success')  
+def success():  
+    return "logged in successfully"   
 
 @app.route('/data')
 def RetrieveList():
@@ -101,7 +115,7 @@ def upload():
     return render_template("upload.html")  
  
 @app.route('/uploader', methods = ['POST'])  
-def success():  
+def uploaded():  
     if request.method == 'POST':  
         f = request.files['file']  
         f.save(f.filename)  
